@@ -1,0 +1,108 @@
+query getActor{
+  actor(id: 1){
+    name
+  }
+}
+
+query getActors {
+  actors {
+    id
+    name
+  }
+}
+
+query getMovie{
+  movie(id: 1){
+    title
+    actors{
+      name
+    }
+  }
+}
+
+query getMovies{
+  movies{
+    title
+    actors{
+      name
+    }
+    year
+  }
+}
+
+
+query complex{
+  actors{
+    name
+  }
+  movies{
+    title
+    actors{
+      name
+    }
+  }
+  
+  
+  movie(id: 1){
+    title
+  }
+  
+  actor(id: 2){
+    name
+  }
+}
+
+
+mutation createActor{
+  createActor(input: {
+    name: "Tom Hanks"
+  }){
+    ok
+    actor{
+      id
+      name
+    }
+  }
+}
+
+mutation createMovie{
+  createMovie(input: {
+    title: "Cast Away",
+    actors: [
+      {
+        id: 3
+      }
+    ]
+    year: 1999
+  }){
+    ok
+    movie{
+      id
+      title
+      actors{
+        name
+      }
+      year
+    }
+  }
+}
+
+
+mutation updateMovie{
+  updateMovie(id: 2, input: {
+    title: "Cast Away",
+    actors: [
+      {id: 3}
+    ]
+    year: 2000
+  }){
+    ok
+    movie{
+      title
+      actors{
+        name
+      }
+      year
+    }
+  }
+}
